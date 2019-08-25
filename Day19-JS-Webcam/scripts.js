@@ -9,7 +9,7 @@ function getVideo() {
 		.getUserMedia({ video: true, audio: false })
 		.then(localMediaStream => {
 			console.log(localMediaStream);
-			video.src = window.URL.createObjectURL(localMediaStream);
+			video.srcObject = localMediaStream;
 			video.play();
 		})
 		.catch(err => {
@@ -32,6 +32,7 @@ function paintToCanvas() {
 
 		// pixels = rgbSplit(pixels);
 		// ctx.globalAlpha = 0.8;
+		// Try value of 0.1
 
 		// pixels = greenScreen(pixels);
 		// Put back the pixels
