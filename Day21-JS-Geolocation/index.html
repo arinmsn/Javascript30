@@ -97,6 +97,26 @@
 
       /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
     </style>
-    <script></script>
+    <script>
+      const arrow = document.querySelector(".arrow");
+      const speed = document.querySelector(".speed-value");
+
+      navigator.geolocation.watchPosition(
+        data => {
+          // Speed is in Km
+          // Stimualted speed will show on screen
+          speed.textContent = data.coords.speed;
+
+          // Moving compass arrow
+          arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+        },
+        err => {
+          console.log(err);
+          console.log(
+            "You have to enable permission on your device in order for app to work."
+          );
+        }
+      );
+    </script>
   </body>
 </html>
