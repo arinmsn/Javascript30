@@ -1,52 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Understanding JavaScript's Capture</title>
-</head>
+  </head>
 
-<body class="bod">
-
+  <body class="bod">
     <div class="one">
-        <div class="two">
-            <div class="three">
-            </div>
-        </div>
+      <div class="two">
+        <div class="three"></div>
+      </div>
     </div>
 
     <style>
-        html {
-            box-sizing: border-box;
-        }
+      html {
+        box-sizing: border-box;
+      }
 
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
 
-        div {
-            width: 100%;
-            padding: 100px;
-        }
+      div {
+        width: 100%;
+        padding: 100px;
+      }
 
-        .one {
-            background: thistle;
-        }
+      .one {
+        background: thistle;
+      }
 
-        .two {
-            background: mistyrose;
-        }
+      .two {
+        background: mistyrose;
+      }
 
-        .three {
-            background: coral;
-        }
+      .three {
+        background: coral;
+      }
     </style>
 
     <button></button>
     <script>
-    </script>
-</body>
+      const divs = document.querySelectorAll("div");
 
+      function logText(e) {
+        //console.log(this.classList.value); // three two one (Bubbling)
+        e.stopPropagation(); // Stop bubbling up
+      }
+
+      divs.forEach(div => div.addEventListener("click", logText));
+      // capture: true (by default it's false)
+      // once: true (will listen to a click once and will unbind itself)
+
+      // This can come in handy in store checkout button!
+      button.addEventListener(
+        "click",
+        () => {
+          console.log("Click!!!");
+        },
+        {
+          once: true
+        }
+      );
+    </script>
+  </body>
 </html>
